@@ -105,6 +105,30 @@ The trained CNN model achieves:
 
 ---
 
+## 🔧 Troubleshooting
+
+### Common Issues & Solutions
+
+**Issue: ModuleNotFoundError for TensorFlow/OpenCV**
+- Solution: Ensure all dependencies are installed: `pip install -r requirements.txt`
+
+**Issue: Memory error when loading images_proj.npy**
+- Solution: The dataset is large (~631 images). Ensure you have at least 4GB RAM available or use Google Colab for cloud processing
+
+**Issue: Notebook kernel crashes during model training**
+- Solution: Reduce batch size in the notebook or use GPU acceleration (Google Colab with GPU runtime)
+
+**Issue: CUDA/GPU not detected**
+- Solution: Install GPU-enabled TensorFlow: `pip install tensorflow[and-cuda]` or use CPU-only version
+
+### Getting Help
+
+- Check the [PROJECT_DESCRIPTION.md](PROJECT_DESCRIPTION.md) for detailed technical documentation
+- Review the Jupyter notebook for inline comments and explanations
+- Open an issue on GitHub for bugs or feature requests
+
+---
+
 ## 📁 File Structure
 
 ```
@@ -145,4 +169,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 
 🌟 **If you found this project helpful, please give it a ⭐!**
+
+---
+
+## 📚 Related Resources & References
+
+- [TensorFlow Documentation](https://www.tensorflow.org/docs)
+- [Keras API Reference](https://keras.io/api/)
+- [OpenCV Tutorials](https://docs.opencv.org/master/d9/df8/tutorial_root.html)
+- [Computer Vision for Safety Applications](https://arxiv.org/list/cs.CV/recent)
+- [Deep Learning Best Practices](https://cs231n.github.io/)
+
 
