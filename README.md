@@ -86,7 +86,8 @@ jupyter notebook HelmNet_Full_Code_sbadwaik_Final.ipynb
 ```
 
 ### Usage
-1. Open the main notebook: `HelmNet_Full_Code_sbadwaik_Final.ipynb`
+1. Open the main notebook: `HelmNet_Full_Code_sbadwaik_v2.ipynb` (recommended - enhanced version)
+   - Or use `HelmNet_Full_Code_sbadwaik_v1.ipynb` for baseline implementation
 2. Run all cells to reproduce the complete analysis
 3. The notebook includes data preprocessing, model training, and evaluation
 4. Pre-processed data (`images_proj.npy`) and labels (`Labels_proj.csv`) are ready to use
@@ -132,13 +133,42 @@ The trained CNN model achieves:
 ## 📁 File Structure
 
 ```
-├── HelmNet_Full_Code_sbadwaik_Final.ipynb              # Complete CNN model implementation and analysis notebook
+├── HelmNet_Full_Code_sbadwaik_v1.ipynb                 # Initial CNN model implementation (baseline)
+├── HelmNet_Full_Code_sbadwaik_v2.ipynb                 # Enhanced version with VGG-16, data augmentation & advanced evaluation
 ├── images_proj.npy                                     # Preprocessed image dataset (631 helmet/no-helmet images)
 ├── Labels_proj.csv                                     # Image classification labels (helmet detection ground truth)
 ├── PROJECT_DESCRIPTION.md                              # Detailed technical documentation and business context
 ├── README.md                                           # Project overview and setup guide
 └── LICENSE                                             # Project license information
 ```
+
+---
+
+## 📈 Version Comparison
+
+### **v1 - Baseline Implementation**
+- Basic CNN architecture from scratch
+- Simple data preprocessing (grayscale, normalization)
+- Train/validation/test split
+- Standard evaluation metrics (accuracy, confusion matrix)
+- Suitable for understanding fundamentals
+
+### **v2 - Enhanced & Production-Ready** ⭐ (Recommended)
+- **Multiple model architectures:**
+  - Simple CNN (baseline)
+  - VGG-16 transfer learning (base model)
+  - VGG-16 + custom FFNN layers
+  - VGG-16 + FFNN + data augmentation
+- **Advanced data augmentation** (rotation, scaling, flipping)
+- **Comprehensive evaluation:**
+  - Confusion matrices for all models
+  - Classification reports (precision, recall, F1-score)
+  - Model performance comparisons
+  - Detailed observations and insights
+- **Better documentation** with business context and recommendations
+- **Production-ready** with optimized hyperparameters
+
+**Recommendation:** Use **v2** for deployment and analysis. It provides superior performance through transfer learning and data augmentation techniques.
 
 ---
 
