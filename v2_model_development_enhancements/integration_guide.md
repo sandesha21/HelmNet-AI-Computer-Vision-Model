@@ -214,3 +214,290 @@ Reduce batch size from 32 to 16 in training calls
 ✅ View TensorBoard logs (optional)  
 
 **Total integration time: 5-10 minutes**
+
+---
+
+# Section 5: Evaluation & Visualization
+
+## Quick Integration (10 minutes)
+
+### Step 1: Import Evaluation Module
+
+```python
+# Add after imports
+from evaluation_visualization import (
+    plot_roc_curves,
+    plot_precision_recall_curves,
+    plot_activation_maps,
+    compute_feature_importance_gradients,
+    plot_feature_importance,
+    perform_cross_validation,
+    plot_cross_validation_results,
+    print_cross_validation_summary,
+    get_prediction_examples,
+    plot_prediction_examples,
+    print_prediction_analysis,
+    generate_evaluation_report,
+    plot_confusion_matrices,
+    plot_model_comparison
+)
+```
+
+### Step 2: ROC & Precision-Recall Curves
+
+```python
+# After loading best models
+models_dict = {
+    'Model 1: Simple CNN': best_model_1,
+    'Model 2: VGG-16 (Frozen)': best_model_2,
+    'Model 3: VGG-16 + FFNN': best_model_3,
+    'Model 4: VGG-16 + FFNN + Aug': best_model_4
+}
+
+# Plot ROC curves
+fig_roc = plot_roc_curves(models_dict, X_test_normalized, y_test)
+plt.show()
+
+# Plot Precision-Recall curves (better for imbalanced data)
+fig_pr = plot_precision_recall_curves(models_dict, X_test_normalized, y_test)
+plt.show()
+```
+
+### Step 3: Confusion Matrices & Model Comparison
+
+```python
+# Plot confusion matrices
+fig_cm = plot_confusion_matrices(models_dict, X_test_normalized, y_test)
+plt.show()
+
+# Compare all models
+fig_comp = plot_model_comparison(models_dict, X_test_normalized, y_test)
+plt.show()
+```
+
+### Step 4: Feature Importance & Activation Maps
+
+```python
+# Compute feature importance using gradients
+importance = compute_feature_importance_gradients(
+    best_model_4, X_test_normalized, y_test, n_samples=100
+)
+
+# Plot feature importance
+fig_imp = plot_feature_importance(importance)
+plt.show()
+
+# Visualize activation maps from intermediate layers
+fig_act = plot_activation_maps(
+    best_model_4, X_test_normalized, 
+    layer_name='conv2d_1',  # Change to your layer name
+    n_samples=3
+)
+plt.show()
+```
+
+### Step 5: Cross-Validation Results
+
+```python
+# Perform cross-validation (optional - takes time)
+print("\nPerforming 5-fold cross-validation...")
+cv_results = perform_cross_validation(
+    best_model_4, X_train_normalized, y_train, 
+    cv_folds=5, metrics=['accuracy']
+)
+
+# Plot CV results
+cv_results_dict = {'Model 4': cv_results}
+fig_cv = plot_cross_validation_results(cv_results_dict)
+plt.show()
+
+# Print summary
+print_cross_validation_summary(cv_results_dict)
+```
+
+### Step 6: Prediction Examples & Analysis
+
+```python
+# Get prediction examples
+examples = get_prediction_examples(
+    best_model_4, X_test_normalized, y_test,
+    n_correct=3, n_incorrect=3
+)
+
+# Plot examples
+fig_ex = plot_prediction_examples(examples)
+plt.show()
+
+# Print detailed analysis
+print_prediction_analysis(best_model_4, X_test_normalized, y_test)
+```
+
+### Step 7: Comprehensive Evaluation Report
+
+```python
+# Generate full report
+generate_evaluation_report(
+    models_dict, 
+    X_test_normalized, y_test,
+    X_train=X_train_normalized,
+    y_train=y_train,
+    cv_folds=5
+)
+```
+
+---
+
+## What Each Feature Does
+
+### ROC Curves
+- Shows True Positive Rate vs False Positive Rate
+- AUC score indicates overall model performance
+- Perfect classifier: AUC = 1.0, Random: AUC = 0.5
+- Useful for comparing models
+
+### Precision-Recall Curves
+- Better for imbalanced datasets
+- Shows trade-off between precision and recall
+- AP (Average Precision) score summarizes performance
+- Baseline = proportion of positive class
+
+### Confusion Matrices
+- Shows True Positives, False Positives, True Negatives, False Negatives
+- Helps identify which classes are confused
+- Diagonal = correct predictions
+
+### Feature Importance (Gradient-based)
+- Uses gradient magnitude to measure feature importance
+- Shows which input features most affect predictions
+- Top 20 features displayed
+
+### Activation Maps
+- Visualizes what intermediate layers learn
+- Shows which image regions activate filters
+- Helps understand model's internal representations
+- Useful for debugging and interpretability
+
+### Cross-Validation
+- Evaluates model on multiple data splits
+- More robust than single train/val/test split
+- Shows variance in model performance
+- Helps detect overfitting
+
+### Prediction Examples
+- Shows correct and incorrect predictions side-by-side
+- Displays confidence scores
+- Helps identify patterns in errors
+- Useful for error analysis
+
+### Model Comparison
+- Compares Accuracy, Precision, Recall, F1-Score
+- Bar chart for easy visualization
+- Helps select best model
+
+---
+
+## Expected Output
+
+### ROC Curves
+- 4 subplots (one per model)
+- AUC scores typically 0.95-0.99 for good models
+
+### Precision-Recall Curves
+- 4 subplots showing precision vs recall trade-off
+- AP scores typically 0.90-0.98
+
+### Confusion Matrices
+- 4 heatmaps showing prediction distribution
+- Diagonal should be high (correct predictions)
+
+### Feature Importance
+- Bar chart of top 20 features
+- Shows which input dimensions matter most
+
+### Activation Maps
+- Grid of activation visualizations
+- Different patterns for different filters
+
+### Cross-Validation
+- Box plot and bar chart of CV scores
+- Mean ± Std for each model
+
+### Prediction Examples
+- 2 rows: correct (green) and incorrect (red)
+- Shows confidence scores
+
+### Model Comparison
+- Grouped bar chart with 4 metrics
+- Easy comparison across models
+
+---
+
+## Troubleshooting
+
+### ImportError: No module named 'evaluation_visualization'
+```bash
+# Make sure file is in same directory as notebook
+# Or add to path:
+import sys
+sys.path.append('./v2_model_development_enhancements')
+```
+
+### Activation maps not showing
+```python
+# Check layer name:
+model.summary()  # Find layer names
+
+# Use correct layer name:
+plot_activation_maps(model, X_test, layer_name='conv2d_0')
+```
+
+### Cross-validation too slow
+```python
+# Reduce folds or samples:
+perform_cross_validation(model, X_train[:1000], y_train[:1000], cv_folds=3)
+```
+
+### Out of memory with large batches
+```python
+# Reduce batch size in cross-validation:
+# Edit perform_cross_validation() to use batch_size=16
+```
+
+---
+
+## Complete Evaluation Workflow
+
+```python
+# 1. Load models
+best_model_1 = load_model('./model_checkpoints/Model_1_best.h5')
+best_model_2 = load_model('./model_checkpoints/Model_2_best.h5')
+best_model_3 = load_model('./model_checkpoints/Model_3_best.h5')
+best_model_4 = load_model('./model_checkpoints/Model_4_best.h5')
+
+# 2. Create models dict
+models_dict = {
+    'Model 1': best_model_1,
+    'Model 2': best_model_2,
+    'Model 3': best_model_3,
+    'Model 4': best_model_4
+}
+
+# 3. Run all evaluations
+plot_roc_curves(models_dict, X_test_normalized, y_test)
+plot_precision_recall_curves(models_dict, X_test_normalized, y_test)
+plot_confusion_matrices(models_dict, X_test_normalized, y_test)
+plot_model_comparison(models_dict, X_test_normalized, y_test)
+
+# 4. Detailed analysis for best model
+importance = compute_feature_importance_gradients(best_model_4, X_test_normalized, y_test)
+plot_feature_importance(importance)
+plot_activation_maps(best_model_4, X_test_normalized, 'conv2d_1')
+
+# 5. Prediction analysis
+examples = get_prediction_examples(best_model_4, X_test_normalized, y_test)
+plot_prediction_examples(examples)
+print_prediction_analysis(best_model_4, X_test_normalized, y_test)
+
+# 6. Full report
+generate_evaluation_report(models_dict, X_test_normalized, y_test)
+```
