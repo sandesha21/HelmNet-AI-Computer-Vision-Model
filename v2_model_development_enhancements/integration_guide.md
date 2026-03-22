@@ -501,3 +501,300 @@ print_prediction_analysis(best_model_4, X_test_normalized, y_test)
 # 6. Full report
 generate_evaluation_report(models_dict, X_test_normalized, y_test)
 ```
+
+
+---
+
+# Section 6: Results & Reporting
+
+## Quick Integration (5 minutes)
+
+### Step 1: Import Results & Reporting Module
+
+```python
+# Add after imports
+from results_reporting import (
+    compute_all_metrics,
+    create_comparison_table,
+    statistical_significance_testing,
+    plot_statistical_significance,
+    generate_recommendations,
+    generate_limitations,
+    generate_future_improvements,
+    generate_full_report,
+    print_full_report
+)
+```
+
+### Step 2: Create Comparison Table
+
+```python
+# After loading best models
+models_dict = {
+    'Model 1: Simple CNN': best_model_1,
+    'Model 2: VGG-16 (Frozen)': best_model_2,
+    'Model 3: VGG-16 + FFNN': best_model_3,
+    'Model 4: VGG-16 + FFNN + Aug': best_model_4
+}
+
+# Create comprehensive comparison table
+metrics_df, fig = create_comparison_table(models_dict, X_test_normalized, y_test)
+plt.show()
+
+print("\nMetrics Summary:")
+print(metrics_df.to_string(index=False))
+```
+
+### Step 3: Statistical Significance Testing
+
+```python
+# Perform McNemar's test for pairwise comparisons
+sig_df = statistical_significance_testing(models_dict, X_test_normalized, y_test)
+
+print("\nStatistical Significance Testing Results:")
+print(sig_df.to_string(index=False))
+
+# Visualize significance
+fig = plot_statistical_significance(sig_df)
+plt.show()
+```
+
+### Step 4: Deployment Recommendations
+
+```python
+# Generate deployment recommendations
+recommendations = generate_recommendations(metrics_df, sig_df)
+print(recommendations)
+```
+
+### Step 5: Limitations & Future Improvements
+
+```python
+# Document model limitations
+limitations = generate_limitations()
+print(limitations)
+
+# Suggest future improvements
+improvements = generate_future_improvements()
+print(improvements)
+```
+
+### Step 6: Full Report (All-in-One)
+
+```python
+# Generate complete results and reporting document
+metrics_df, sig_df = print_full_report(models_dict, X_test_normalized, y_test)
+```
+
+### Step 7: Export Results
+
+```python
+# Export metrics and significance to CSV
+metrics_df.to_csv('model_metrics.csv', index=False)
+sig_df.to_csv('statistical_significance.csv', index=False)
+
+print("✓ Results exported to CSV files")
+```
+
+---
+
+## What Each Feature Does
+
+### Comparison Table
+- Side-by-side metrics for all models
+- Includes: Accuracy, Precision, Recall, F1-Score, ROC-AUC, Avg Confidence
+- Formatted table visualization
+- Easy model comparison
+
+### Statistical Significance Testing
+- McNemar's test for pairwise model comparisons
+- Tests if performance differences are statistically significant
+- p-values indicate significance level
+- Helps distinguish real differences from random variation
+
+### Significance Visualization
+- Bar chart of -log10(p-values)
+- Color-coded by significance level
+- Reference lines for p=0.05 and p=0.01
+- Easy interpretation of results
+
+### Deployment Recommendations
+- Identifies best model based on F1-Score
+- Lists performance ranking
+- Highlights key strengths
+- Shows statistical significance vs other models
+- Provides deployment considerations
+
+### Limitations Documentation
+- Data limitations
+- Prediction constraints
+- Technical limitations
+- Evaluation limitations
+- Known issues
+- Business constraints
+
+### Future Improvements
+- Short-term improvements (1-2 weeks)
+- Medium-term improvements (1-3 months)
+- Long-term improvements (3-6 months)
+- Monitoring and maintenance
+- Research directions
+- Knowledge transfer
+
+---
+
+## Expected Output
+
+### Comparison Table
+```
+┌─────────────────────────────────────────────────────────────────┐
+│ Model    │ Accuracy │ Precision │ Recall │ F1-Score │ ROC-AUC │
+├─────────────────────────────────────────────────────────────────┤
+│ Model 1  │  0.9234  │   0.9156  │ 0.9234 │  0.9195  │  0.9567 │
+│ Model 2  │  0.9156  │   0.9089  │ 0.9156 │  0.9122  │  0.9478 │
+│ Model 3  │  0.9312  │   0.9245  │ 0.9312 │  0.9278  │  0.9634 │
+│ Model 4  │  0.9089  │   0.9012  │ 0.9089 │  0.9050  │  0.9412 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### Statistical Significance
+```
+Model 1 vs Model 2: NOT SIGNIFICANT (p=0.1234)
+Model 1 vs Model 3: SIGNIFICANT (p=0.0045) **
+Model 1 vs Model 4: SIGNIFICANT (p=0.0012) **
+Model 2 vs Model 3: SIGNIFICANT (p=0.0023) **
+Model 2 vs Model 4: NOT SIGNIFICANT (p=0.0678)
+Model 3 vs Model 4: SIGNIFICANT (p=0.0001) ***
+```
+
+### Recommendations
+```
+🏆 RECOMMENDED MODEL FOR DEPLOYMENT: Model 3
+   ├─ F1-Score: 0.9278
+   ├─ Accuracy: 0.9312
+   ├─ Precision: 0.9245
+   ├─ Recall: 0.9312
+   └─ ROC-AUC: 0.9634
+
+📊 PERFORMANCE RANKING:
+   1. Model 3          F1=0.9278  Acc=0.9312
+   2. Model 1          F1=0.9195  Acc=0.9234
+   3. Model 2          F1=0.9122  Acc=0.9156
+   4. Model 4          F1=0.9050  Acc=0.9089
+```
+
+---
+
+## Complete Results & Reporting Workflow
+
+```python
+# 1. Load models
+best_model_1 = load_model('./model_checkpoints/Model_1_best.h5')
+best_model_2 = load_model('./model_checkpoints/Model_2_best.h5')
+best_model_3 = load_model('./model_checkpoints/Model_3_best.h5')
+best_model_4 = load_model('./model_checkpoints/Model_4_best.h5')
+
+# 2. Create models dict
+models_dict = {
+    'Model 1': best_model_1,
+    'Model 2': best_model_2,
+    'Model 3': best_model_3,
+    'Model 4': best_model_4
+}
+
+# 3. Comparison table
+metrics_df, fig = create_comparison_table(models_dict, X_test_normalized, y_test)
+plt.show()
+
+# 4. Statistical significance
+sig_df = statistical_significance_testing(models_dict, X_test_normalized, y_test)
+fig = plot_statistical_significance(sig_df)
+plt.show()
+
+# 5. Recommendations
+recommendations = generate_recommendations(metrics_df, sig_df)
+print(recommendations)
+
+# 6. Limitations
+limitations = generate_limitations()
+print(limitations)
+
+# 7. Future improvements
+improvements = generate_future_improvements()
+print(improvements)
+
+# 8. Full report (all-in-one)
+metrics_df, sig_df = print_full_report(models_dict, X_test_normalized, y_test)
+
+# 9. Export results
+metrics_df.to_csv('model_metrics.csv', index=False)
+sig_df.to_csv('statistical_significance.csv', index=False)
+```
+
+---
+
+## Troubleshooting
+
+### ImportError: No module named 'results_reporting'
+```bash
+# Make sure file is in same directory as notebook
+# Or add to path:
+import sys
+sys.path.append('./v2_model_development_enhancements')
+```
+
+### No significant differences found
+- Models may be too similar
+- Test set may be too small
+- Try with more data or different models
+
+### Unexpected model rankings
+- Check data preprocessing
+- Verify model training completed
+- Review evaluation metrics
+
+---
+
+## Summary
+
+✅ Import `results_reporting` module  
+✅ Create comparison table  
+✅ Perform statistical significance testing  
+✅ Generate deployment recommendations  
+✅ Document limitations  
+✅ Plan future improvements  
+✅ Export results to CSV  
+
+**Total integration time: 5-10 minutes**
+
+---
+
+## Complete Integration Checklist
+
+### Training & Callbacks
+- [ ] Copy `model_callbacks.py` to notebook
+- [ ] Add `print_model_architecture()` before training
+- [ ] Add `print_hyperparameter_docs()` before training
+- [ ] Add `callbacks=create_callbacks()` to fit() calls
+- [ ] Load best models from checkpoints
+
+### Evaluation & Visualization
+- [ ] Import `evaluation_visualization` module
+- [ ] Create models dictionary
+- [ ] Plot ROC and PR curves
+- [ ] Plot confusion matrices
+- [ ] Compare models
+- [ ] Analyze feature importance
+- [ ] Visualize activation maps
+- [ ] Generate evaluation report
+
+### Results & Reporting
+- [ ] Import `results_reporting` module
+- [ ] Create comparison table
+- [ ] Perform statistical significance testing
+- [ ] Generate deployment recommendations
+- [ ] Document limitations
+- [ ] Plan future improvements
+- [ ] Export results to CSV
+
+**All sections complete! Ready for production deployment.**
