@@ -22,6 +22,13 @@ This folder contains enhancements specifically for **HelmNet_Full_Code_sbadwaik_
 13. **Model Comparison** - Multi-model performance comparison
 14. **Comprehensive Reports** - Full evaluation summaries
 
+### Results & Reporting
+15. **Comparison Table** - Side-by-side metrics for all models
+16. **Statistical Significance Testing** - McNemar's test for pairwise comparisons
+17. **Deployment Recommendations** - Which model to deploy and why
+18. **Limitations Documentation** - Model constraints and edge cases
+19. **Future Improvements** - Roadmap for enhancement
+
 ## Files
 
 ### Training
@@ -32,6 +39,12 @@ This folder contains enhancements specifically for **HelmNet_Full_Code_sbadwaik_
 - `EVALUATION_README.md` - Full evaluation documentation
 - `EVALUATION_QUICK_START.md` - Quick reference guide
 - `NOTEBOOK_CELLS.md` - Copy-paste notebook cells
+
+### Results & Reporting
+- `results_reporting.py` - Results analysis and reporting module
+- `RESULTS_REPORTING.md` - Full results documentation
+- `RESULTS_QUICK_START.md` - Quick reference guide
+- `RESULTS_NOTEBOOK_CELLS.md` - Copy-paste notebook cells
 
 ### Integration
 - `integration_guide.md` - Complete integration instructions
@@ -73,11 +86,50 @@ print_prediction_analysis(best_model_4, X_test, y_test)
 
 # Full report
 generate_evaluation_report(models_dict, X_test, y_test)
+```# Results & Reporting Setup
+Copy the code from `results_reporting.py` into your notebook, then use reporting functions:
+
+```python
+from results_reporting import *
+
+# Create models dictionary
+models_dict = {
+    'Model 1': best_model_1,
+    'Model 2': best_model_2,
+    'Model 3': best_model_3,
+    'Model 4': best_model_4
+}
+
+# Comparison table
+metrics_df, fig = create_comparison_table(models_dict, X_test, y_test)
+plt.show()
+
+# Statistical significance testing
+sig_df = statistical_significance_testing(models_dict, X_test, y_test)
+fig = plot_statistical_significance(sig_df)
+plt.show()
+
+# Recommendations and analysis
+recommendations = generate_recommendations(metrics_df, sig_df)
+print(recommendations)
+
+# Limitations and future improvements
+limitations = generate_limitations()
+print(limitations)
+
+improvements = generate_future_improvements()
+print(improvements)
+
+# Full report (all-in-one)
+metrics_df, sig_df = print_full_report(models_dict, X_test, y_test)
 ```
 
 ## Documentation
 
-- **integration_guide.md** - Step-by-step integration for both training and evaluation
+- **integration_guide.md** - Step-by-step integration for training, evaluation, and results
 - **EVALUATION_README.md** - Complete evaluation module documentation
 - **EVALUATION_QUICK_START.md** - Quick reference with one-liners
-- **NOTEBOOK_CELLS.md** - Ready-to-copy notebook cells
+- **NOTEBOOK_CELLS.md** - Ready-to-copy evaluation notebook cells
+- **RESULTS_REPORTING.md** - Complete results & reporting documentation
+- **RESULTS_QUICK_START.md** - Quick reference for results module
+- **RESULTS_NOTEBOOK_CELLS.md** - Ready-to-copy results notebook cells
