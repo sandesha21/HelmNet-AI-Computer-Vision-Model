@@ -13,6 +13,12 @@
 - **VISUAL_GUIDE.md** - Visual diagrams and interpretation guides
 - **IMPLEMENTATION_SUMMARY.md** - What was implemented and why
 
+### Performance Optimization Module
+- **PERFORMANCE_README.md** - Full function reference and documentation
+- **PERFORMANCE_QUICK_START.md** - Quick reference with one-liners
+- **PERFORMANCE_NOTEBOOK_CELLS.md** - Copy-paste ready notebook cells
+- **PERFORMANCE_IMPLEMENTATION_SUMMARY.md** - What was implemented and why
+
 ### This File
 - **INDEX.md** - Navigation guide (you are here)
 
@@ -37,6 +43,15 @@
   - Prediction examples
   - Model comparison
   - Comprehensive reports
+
+### Performance Optimization
+- **performance_optimization.py** - Performance monitoring and optimization
+  - Memory usage tracking (CPU/GPU)
+  - Training time tracking
+  - Batch size recommendations
+  - Inference time benchmarks
+  - Performance reports
+  - Keras callback integration
 
 ## 📚 How to Use This Documentation
 
@@ -141,28 +156,61 @@
 - Visual: VISUAL_GUIDE.md → Model Comparison
 - Example: NOTEBOOK_CELLS.md → Cell 4
 
+**Track Memory Usage**
+- Class: `MemoryTracker`
+- Doc: PERFORMANCE_README.md → Memory Tracking
+- Example: PERFORMANCE_NOTEBOOK_CELLS.md → Cell 7
+
+**Track Training Time**
+- Class: `TrainingTimeTracker`
+- Doc: PERFORMANCE_README.md → Training Time Tracking
+- Example: PERFORMANCE_NOTEBOOK_CELLS.md → Cell 6
+
+**Find Optimal Batch Size**
+- Function: `recommend_batch_size()`
+- Doc: PERFORMANCE_README.md → Batch Size Recommendations
+- Example: PERFORMANCE_NOTEBOOK_CELLS.md → Cell 3
+
+**Benchmark Inference**
+- Class: `InferenceBenchmark`
+- Doc: PERFORMANCE_README.md → Inference Benchmarking
+- Example: PERFORMANCE_NOTEBOOK_CELLS.md → Cell 11
+
+**Generate Performance Report**
+- Function: `generate_performance_report()`
+- Doc: PERFORMANCE_README.md → Reports
+- Example: PERFORMANCE_NOTEBOOK_CELLS.md → Cell 15
+
 ## 📖 Reading Order
 
 ### For First-Time Users
 1. README.md - Get overview
 2. EVALUATION_QUICK_START.md - See quick examples
-3. NOTEBOOK_CELLS.md - Copy cells into notebook
-4. VISUAL_GUIDE.md - Understand visualizations
+3. PERFORMANCE_QUICK_START.md - See performance examples
+4. NOTEBOOK_CELLS.md - Copy cells into notebook
+5. PERFORMANCE_NOTEBOOK_CELLS.md - Copy performance cells
+6. VISUAL_GUIDE.md - Understand visualizations
 
 ### For Detailed Learning
-1. EVALUATION_README.md - Learn all functions
-2. IMPLEMENTATION_SUMMARY.md - Understand design
-3. VISUAL_GUIDE.md - Interpret results
-4. integration_guide.md - Integration details
+1. EVALUATION_README.md - Learn all evaluation functions
+2. PERFORMANCE_README.md - Learn all performance functions
+3. IMPLEMENTATION_SUMMARY.md - Understand evaluation design
+4. PERFORMANCE_IMPLEMENTATION_SUMMARY.md - Understand performance design
+5. VISUAL_GUIDE.md - Interpret results
+6. integration_guide.md - Integration details
 
 ### For Reference
-1. EVALUATION_QUICK_START.md - One-liners
-2. NOTEBOOK_CELLS.md - Copy-paste cells
-3. VISUAL_GUIDE.md - Interpretation guide
-4. EVALUATION_README.md - Full reference
+1. EVALUATION_QUICK_START.md - Evaluation one-liners
+2. PERFORMANCE_QUICK_START.md - Performance one-liners
+3. NOTEBOOK_CELLS.md - Evaluation copy-paste cells
+4. PERFORMANCE_NOTEBOOK_CELLS.md - Performance copy-paste cells
+5. VISUAL_GUIDE.md - Interpretation guide
+6. EVALUATION_README.md - Full evaluation reference
+7. PERFORMANCE_README.md - Full performance reference
 
 ## 🚀 Getting Started (5 Minutes)
 
+### Evaluation Module
 1. **Copy module**
    ```bash
    cp evaluation_visualization.py ./
@@ -226,26 +274,38 @@
 
 | File | Size | Purpose |
 |------|------|---------|
-| evaluation_visualization.py | ~450 lines | Main module |
-| EVALUATION_README.md | ~400 lines | Full reference |
-| EVALUATION_QUICK_START.md | ~150 lines | Quick guide |
-| NOTEBOOK_CELLS.md | ~300 lines | Copy-paste cells |
+| evaluation_visualization.py | ~450 lines | Evaluation module |
+| performance_optimization.py | ~500 lines | Performance module |
+| EVALUATION_README.md | ~400 lines | Evaluation reference |
+| PERFORMANCE_README.md | ~500 lines | Performance reference |
+| EVALUATION_QUICK_START.md | ~150 lines | Evaluation quick guide |
+| PERFORMANCE_QUICK_START.md | ~150 lines | Performance quick guide |
+| NOTEBOOK_CELLS.md | ~300 lines | Evaluation copy-paste cells |
+| PERFORMANCE_NOTEBOOK_CELLS.md | ~400 lines | Performance copy-paste cells |
 | VISUAL_GUIDE.md | ~250 lines | Visual diagrams |
-| IMPLEMENTATION_SUMMARY.md | ~300 lines | Implementation details |
+| IMPLEMENTATION_SUMMARY.md | ~300 lines | Evaluation implementation |
+| PERFORMANCE_IMPLEMENTATION_SUMMARY.md | ~350 lines | Performance implementation |
 | integration_guide.md | ~400 lines | Integration guide |
 | README.md | ~100 lines | Overview |
-| INDEX.md | ~300 lines | This file |
+| INDEX.md | ~350 lines | This file |
 
 ## ✅ Checklist
 
-Before using in notebook:
+### Before Using Evaluation Module
 - [ ] Copy evaluation_visualization.py
 - [ ] Import functions
 - [ ] Create models_dict
 - [ ] Have X_test, y_test ready
 - [ ] Have X_train, y_train ready (for CV)
 
-During evaluation:
+### Before Using Performance Module
+- [ ] Copy performance_optimization.py
+- [ ] Import functions
+- [ ] Have trained model ready
+- [ ] Have X_test data ready
+- [ ] Check available hardware
+
+### During Evaluation
 - [ ] Run ROC curves
 - [ ] Run PR curves
 - [ ] Run confusion matrices
@@ -255,28 +315,57 @@ During evaluation:
 - [ ] Run prediction examples
 - [ ] Run full report
 
-After evaluation:
+### During Performance Optimization
+- [ ] Check available hardware
+- [ ] Find optimal batch size
+- [ ] Setup tracking
+- [ ] Train with tracking
+- [ ] Benchmark inference
+- [ ] Generate report
+- [ ] Visualize results
+
+### After Analysis
 - [ ] Select best model
 - [ ] Understand errors
 - [ ] Validate robustness
+- [ ] Optimize performance
 - [ ] Prepare for deployment
 
 ## 🆘 Troubleshooting
 
-**Can't import module**
+**Evaluation Module**
+
+Can't import module
 → See: EVALUATION_QUICK_START.md → Common Issues
 
-**Don't understand visualization**
+Don't understand visualization
 → See: VISUAL_GUIDE.md → Interpretation Guide
 
-**Function not working**
+Function not working
 → See: EVALUATION_README.md → Function Reference
 
-**Need specific example**
+Need specific example
 → See: NOTEBOOK_CELLS.md → Relevant cell
 
-**Want to understand design**
+Want to understand design
 → See: IMPLEMENTATION_SUMMARY.md
+
+**Performance Module**
+
+GPU memory not detected
+→ See: PERFORMANCE_README.md → Troubleshooting
+
+Batch size recommendation fails
+→ See: PERFORMANCE_README.md → Troubleshooting
+
+Inference benchmark is slow
+→ See: PERFORMANCE_README.md → Troubleshooting
+
+Memory tracking shows no data
+→ See: PERFORMANCE_README.md → Troubleshooting
+
+Out of memory during benchmarking
+→ See: PERFORMANCE_README.md → Troubleshooting
 
 ## 📞 Support
 
@@ -289,28 +378,49 @@ For issues or questions:
 
 ## 🎓 Learning Path
 
-**Beginner**
+**Beginner - Evaluation**
 1. EVALUATION_QUICK_START.md
 2. NOTEBOOK_CELLS.md
 3. VISUAL_GUIDE.md
 
+**Beginner - Performance**
+1. PERFORMANCE_QUICK_START.md
+2. PERFORMANCE_NOTEBOOK_CELLS.md
+3. PERFORMANCE_README.md
+
 **Intermediate**
 1. EVALUATION_README.md
-2. IMPLEMENTATION_SUMMARY.md
-3. integration_guide.md
+2. PERFORMANCE_README.md
+3. IMPLEMENTATION_SUMMARY.md
+4. PERFORMANCE_IMPLEMENTATION_SUMMARY.md
+5. integration_guide.md
 
 **Advanced**
 1. evaluation_visualization.py (code)
-2. IMPLEMENTATION_SUMMARY.md (design)
-3. Modify functions as needed
+2. performance_optimization.py (code)
+3. IMPLEMENTATION_SUMMARY.md (design)
+4. PERFORMANCE_IMPLEMENTATION_SUMMARY.md (design)
+5. Modify functions as needed
 
 ## 📝 Summary
 
-This folder contains complete evaluation and visualization tools for HelmNet models:
+This folder contains complete evaluation and performance optimization tools for HelmNet models:
 
+### Evaluation Module
 - **5 Required Features**: ROC curves, PR curves, feature importance, cross-validation, prediction examples
 - **3 Bonus Features**: Confusion matrices, model comparison, comprehensive reports
-- **9 Documentation Files**: Guides, references, examples, visuals
 - **1 Main Module**: 450+ lines of production-ready code
 
-Everything is ready to use. Start with EVALUATION_QUICK_START.md!
+### Performance Optimization Module
+- **4 Core Features**: Memory tracking, time tracking, batch size recommendations, inference benchmarks
+- **1 Main Module**: 500+ lines of production-ready code
+- **Keras Integration**: Automatic tracking callback
+
+### Documentation
+- **9 Evaluation Files**: Guides, references, examples, visuals
+- **4 Performance Files**: Guides, references, examples, implementation details
+- **2 Integration Files**: Complete integration instructions
+
+Everything is ready to use. Start with:
+- **Evaluation**: EVALUATION_QUICK_START.md
+- **Performance**: PERFORMANCE_QUICK_START.md
