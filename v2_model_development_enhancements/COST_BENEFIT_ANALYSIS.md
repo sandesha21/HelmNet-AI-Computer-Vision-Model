@@ -1,14 +1,18 @@
-# Cost-Benefit Analysis: Model Accuracy vs. Computational Cost
+# 💰 Cost-Benefit Analysis: Model Accuracy vs. Computational Cost
 
-## Executive Summary
+## 📋 Executive Summary
 
 This document quantifies the trade-off between model accuracy and computational cost, demonstrating that **Model 4 achieves optimal balance** with 96.8% accuracy at minimal computational overhead.
 
+**Key Finding**: Model 4 saves **$1.5M over 5 years** compared to Model 1, with payback in just 7 days.
+
 ---
 
-## Model Comparison: Accuracy vs. Cost
+## 🎯 Model Comparison: Accuracy vs. Cost
 
-### Performance Metrics
+### 📊 Performance Metrics
+
+**Output Description**: These metrics show how each model performs on the test dataset. Higher accuracy, precision, recall, and AUC-ROC indicate better model quality.
 
 | Metric | Model 1 | Model 2 | Model 3 | Model 4 |
 |--------|---------|---------|---------|---------|
@@ -18,7 +22,11 @@ This document quantifies the trade-off between model accuracy and computational 
 | **F1-Score** | 91.1% | 93.4% | 95.0% | 96.0% |
 | **AUC-ROC** | 0.945 | 0.965 | 0.978 | 0.985 |
 
-### Computational Cost Metrics
+> **Reference**: [ROC Curves and AUC](https://scikit-learn.org/stable/modules/model_evaluation.html#roc-metrics) - Scikit-learn documentation on ROC-AUC evaluation
+
+### ⚙️ Computational Cost Metrics
+
+**Output Description**: These metrics quantify the computational resources required for each model. Lower values indicate more efficient models.
 
 | Metric | Model 1 | Model 2 | Model 3 | Model 4 |
 |--------|---------|---------|---------|---------|
@@ -29,11 +37,13 @@ This document quantifies the trade-off between model accuracy and computational 
 | **Training Time** | 2 hours | 3.5 hours | 5 hours | 6.5 hours |
 | **FLOPs** | 2.1B | 3.2B | 4.5B | 5.8B |
 
+> **Reference**: [FLOPs and Model Efficiency](https://en.wikipedia.org/wiki/FLOPS) - Understanding floating-point operations for model complexity
+
 ---
 
-## Cost Analysis
+## 💵 Cost Analysis
 
-### Hardware Requirements
+### 🖥️ Hardware Requirements
 
 #### CPU-Only Deployment
 
@@ -43,6 +53,8 @@ This document quantifies the trade-off between model accuracy and computational 
 | Model 2 | 22% | 3GB | Edge devices, servers |
 | Model 3 | 35% | 4GB | Servers only |
 | Model 4 | 45% | 5GB | Servers, high-end edge |
+
+**Output Description**: CPU load indicates processor utilization; RAM shows memory requirements for inference.
 
 **Cost Impact**:
 - Model 1: $200/device (low-end edge)
@@ -59,13 +71,17 @@ This document quantifies the trade-off between model accuracy and computational 
 | Model 3 | 2.4GB | RTX 2060 | $300 |
 | Model 4 | 2.8GB | RTX 2070 | $400 |
 
+**Output Description**: GPU memory requirements and recommended GPU types for optimal performance.
+
 **Cost Impact**:
 - Model 1: $150/GPU (budget option)
 - Model 2: $200/GPU (mid-range)
 - Model 3: $300/GPU (high-end)
 - Model 4: $400/GPU (premium)
 
-### Infrastructure Costs (Per Facility)
+### 🏢 Infrastructure Costs (Per Facility)
+
+**Output Description**: Total cost of ownership including hardware, deployment, and annual operations.
 
 #### Scenario 1: 10 Camera Feeds (CPU-Only)
 
@@ -87,9 +103,11 @@ This document quantifies the trade-off between model accuracy and computational 
 
 ---
 
-## Accuracy Impact on Business Outcomes
+## 🎯 Accuracy Impact on Business Outcomes
 
-### Missed Helmets (False Negatives)
+### ⚠️ Missed Helmets (False Negatives)
+
+**Output Description**: False negatives represent safety violations that go undetected. Lower rates are critical for worker safety.
 
 **Calculation**: (1 - Recall) × Workers × Days
 
@@ -107,7 +125,11 @@ Assumptions:
 
 **Cost Difference (Model 1 vs. Model 4)**: $191,250/year in prevented incident costs
 
-### False Alarms (False Positives)
+> **Reference**: [Safety ROI Calculation](https://www.osha.gov/dsg/naics4/naics4_search.html) - OSHA guidelines on workplace safety cost analysis
+
+### 🔔 False Alarms (False Positives)
+
+**Output Description**: False positives create unnecessary alerts, wasting staff time and reducing system credibility.
 
 **Calculation**: (1 - Precision) × Workers × Days × Alert Response Cost
 
@@ -128,9 +150,11 @@ Assumptions:
 
 ---
 
-## Total Cost of Ownership (TCO)
+## 📊 Total Cost of Ownership (TCO)
 
-### 5-Year TCO Analysis (Per Facility)
+### 📈 5-Year TCO Analysis (Per Facility)
+
+**Output Description**: Total cost includes hardware, operations, incident costs, and false alarm costs. Lower totals indicate better value.
 
 #### Model 1 (Lowest Cost, Lowest Accuracy)
 
@@ -158,11 +182,13 @@ Assumptions:
 
 ---
 
-## Cost-Benefit Ratio
+## 📉 Cost-Benefit Ratio
 
-### Accuracy Premium Analysis
+### 🔍 Accuracy Premium Analysis
 
 **Question**: Is the extra computational cost worth the accuracy improvement?
+
+**Output Description**: ROI metrics show the return on investment for upgrading to a more accurate model.
 
 #### Model 1 → Model 4 Upgrade
 
@@ -178,11 +204,13 @@ Assumptions:
 
 **5-Year ROI**: 5,560% (for every $1 spent on better hardware, save $55.60)
 
+> **Reference**: [ROI Calculation Methods](https://www.investopedia.com/terms/r/returnoninvestment.asp) - Understanding ROI metrics
+
 ---
 
-## Inference Cost Analysis
+## ⚡ Inference Cost Analysis
 
-### Per-Frame Processing Cost
+### 💾 Per-Frame Processing Cost
 
 **Assumptions**:
 - GPU cost: $400
@@ -198,13 +226,17 @@ Assumptions:
 | Model 3 | 92ms | 11 fps | $0.000024 | $1.62 |
 | Model 4 | 98ms | 10 fps | $0.000026 | $1.75 |
 
+**Output Description**: Per-frame cost is negligible across all models (~$0.000026 per frame for Model 4).
+
 **Cost Difference (Model 1 vs. Model 4)**: $0.94/day = $235/year (negligible)
 
 ---
 
-## Scalability Analysis
+## 📈 Scalability Analysis
 
-### Cost Per Facility (10 Cameras)
+### 🏭 Cost Per Facility (10 Cameras)
+
+**Output Description**: Cost per camera shows how expenses scale with facility size. Model 4 has lowest per-camera cost.
 
 | Model | Year 1 | Year 2-5 | 5-Year Total | Cost/Camera |
 |-------|--------|----------|-------------|-----------|
@@ -222,9 +254,9 @@ Assumptions:
 
 ---
 
-## Break-Even Analysis
+## 🎯 Break-Even Analysis
 
-### When Does Better Accuracy Pay Off?
+### 📊 When Does Better Accuracy Pay Off?
 
 **Scenario**: Facility with N workers
 
@@ -235,13 +267,15 @@ Assumptions:
 | 500 | $474,500 | $176,100 | Immediate |
 | 1000 | $949,000 | $352,200 | Immediate |
 
+**Output Description**: Break-even analysis shows Model 4 is immediately cost-effective at all facility sizes.
+
 **Conclusion**: Model 4 is cost-effective at ANY facility size due to superior accuracy.
 
 ---
 
-## Sensitivity Analysis
+## 🔬 Sensitivity Analysis
 
-### What If Incident Costs Change?
+### 💰 What If Incident Costs Change?
 
 **Assumption**: Average incident cost = $50,000
 
@@ -252,9 +286,11 @@ Assumptions:
 | $75,000 | $3,508,225 | $1,304,550 | $2,203,675 |
 | $100,000 | $4,644,300 | $1,739,400 | $2,904,900 |
 
+**Output Description**: Sensitivity analysis shows Model 4 remains cost-effective across different incident cost scenarios.
+
 **Insight**: Even at $25K incident cost, Model 4 saves $800K over 5 years.
 
-### What If False Alarm Cost Changes?
+### 🔔 What If False Alarm Cost Changes?
 
 **Assumption**: False alarm cost = $50/alert
 
@@ -265,13 +301,15 @@ Assumptions:
 | $75 | $2,921,150 | $1,304,550 | $1,616,600 |
 | $100 | $3,470,150 | $1,739,400 | $1,730,750 |
 
+**Output Description**: Model 4 maintains significant savings across all false alarm cost scenarios.
+
 **Insight**: Model 4 savings range from $1.4M to $1.7M regardless of alert cost.
 
 ---
 
-## Computational Efficiency Metrics
+## ⚡ Computational Efficiency Metrics
 
-### Accuracy per Computational Unit
+### 📊 Accuracy per Computational Unit
 
 **Metric**: Accuracy / (Model Size × Inference Time × Memory)
 
@@ -282,13 +320,15 @@ Assumptions:
 | Model 3 | 95.1% | 0.0093 | 2nd |
 | Model 4 | 96.8% | 0.0095 | **1st** ✅ |
 
+**Output Description**: Efficiency score combines accuracy with computational requirements. Higher scores indicate better value.
+
 **Conclusion**: Model 4 is most efficient (best accuracy per computational unit).
 
 ---
 
-## Deployment Recommendation
+## 🚀 Deployment Recommendation
 
-### Model Selection Matrix
+### 📋 Model Selection Matrix
 
 | Criterion | Model 1 | Model 2 | Model 3 | Model 4 |
 |-----------|---------|---------|---------|---------|
@@ -299,7 +339,9 @@ Assumptions:
 | **Safety** | ⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
 | **Overall** | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | **⭐⭐⭐⭐⭐** |
 
-### Recommendation by Use Case
+**Output Description**: Comprehensive comparison across key dimensions. Model 4 excels in safety and overall value.
+
+### 🎯 Recommendation by Use Case
 
 | Use Case | Recommended | Reason |
 |----------|------------|--------|
@@ -312,9 +354,9 @@ Assumptions:
 
 ---
 
-## Financial Summary
+## 💼 Financial Summary
 
-### 5-Year Total Cost of Ownership
+### 📊 5-Year Total Cost of Ownership
 
 ```
 Model 1: $2,372,150 (High incident costs offset low hardware cost)
@@ -323,7 +365,9 @@ Model 3: $1,023,150 (High accuracy, reasonable cost)
 Model 4: $869,700   (Best accuracy, justified cost) ✅
 ```
 
-### Annual Cost Comparison
+**Output Description**: Total cost includes all expenses over 5 years. Model 4 has lowest total cost despite higher hardware investment.
+
+### 📈 Annual Cost Comparison
 
 ```
 Model 1: $474,430/year (expensive due to incidents)
@@ -332,7 +376,9 @@ Model 3: $204,630/year (good value)
 Model 4: $173,940/year (best value) ✅
 ```
 
-### ROI Comparison
+**Output Description**: Annual costs show Model 4 is most economical on a per-year basis.
+
+### 💹 ROI Comparison
 
 ```
 Model 1: 0% (baseline)
@@ -341,9 +387,11 @@ Model 3: 57% savings vs. Model 1
 Model 4: 63% savings vs. Model 1 ✅
 ```
 
+**Output Description**: ROI percentages show savings relative to Model 1 baseline.
+
 ---
 
-## Conclusion
+## ✅ Conclusion
 
 **Model 4 is the optimal choice** because:
 
