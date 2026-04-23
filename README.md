@@ -36,7 +36,7 @@ The primary goal was to develop an image classification model capable of disting
 
 ## Dataset  
 - **Source:** Provided as part of the project coursework  
-- **Size:** 631 labeled images  
+- **Size:** 631 labeled images with and without helmets.
 - **Categories:**  
   - `With Helmet` – Workers wearing helmets  
   - `Without Helmet` – Workers without helmets
